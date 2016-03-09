@@ -38,12 +38,13 @@ angular.module('ionicApp', ['ionic'])
 
     $scope.ff = function () {
         alert(1);
-    }
+    };
+
     $scope.ff2 = function () {
-        alert(1);
+        alert(2);
         window.plugins.flashlight.toggle();
         alert(3);
-    }
+    };
 })
 
 .controller('MainCtrl', function ($scope, $state) {
