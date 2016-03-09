@@ -1,48 +1,57 @@
 angular.module('ionicApp', ['ionic'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
 
-  $stateProvider
+    $stateProvider
   .state('intro', {
-    url: '/',
-    templateUrl: 'templates/intro.html',
-    controller: 'IntroCtrl'
+      url: '/',
+      templateUrl: 'templates/intro.html',
+      controller: 'IntroCtrl'
   })
   .state('main', {
-    url: '/main',
-    templateUrl: 'templates/main.html',
-    controller: 'MainCtrl'
+      url: '/main',
+      templateUrl: 'templates/main.html',
+      controller: 'MainCtrl'
   });
 
-  $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/");
 
 })
 
-.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
- 
-  // Called to navigate to the main app
-  $scope.startApp = function() {
-    $state.go('main');
-  };
-  $scope.next = function() {
-    $ionicSlideBoxDelegate.next();
-  };
-  $scope.previous = function() {
-    $ionicSlideBoxDelegate.previous();
-  };
+.controller('IntroCtrl', function ($scope, $state, $ionicSlideBoxDelegate) {
 
-  // Called each time the slide changes
-  $scope.slideChanged = function(index) {
-    $scope.slideIndex = index;
-  };
+    // Called to navigate to the main app
+    $scope.startApp = function () {
+        $state.go('main');
+    };
+    $scope.next = function () {
+        $ionicSlideBoxDelegate.next();
+    };
+    $scope.previous = function () {
+        $ionicSlideBoxDelegate.previous();
+    };
+
+    // Called each time the slide changes
+    $scope.slideChanged = function (index) {
+        $scope.slideIndex = index;
+    };
+
+    $scope.ff = function () {
+        alert(1);
+    }
+    $scope.ff2 = function () {
+        alert(1);
+        window.plugins.flashlight.toggle();
+        alert(3);
+    }
 })
 
-.controller('MainCtrl', function($scope, $state) {
-  console.log('MainCtrl');
-  
-  $scope.toIntro = function(){
-    $state.go('intro');
-  }
+.controller('MainCtrl', function ($scope, $state) {
+    console.log('MainCtrl');
+
+    $scope.toIntro = function () {
+        $state.go('intro');
+    }
 });
 
 
