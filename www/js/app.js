@@ -40,11 +40,18 @@ angular.module('ionicApp', ['ionic'])
         alert(1);
     };
 
-    $scope.ff2 = function () {
-        alert(2);
-        window.plugins.flashlight.toggle();
-        alert(3);
+    $scope.flashLight = function () {
+        if ($scope.flashLightOn) {
+            window.plugins.flashlight.switchOff(alert(1),alert(2));
+            $scope.flashLightOn = false;
+        }
+        else {
+            window.plugins.flashlight.switchOn(alert(3),alert(4));
+            $scope.flashLightOn = true;
+        }
     };
+
+    $scope.flashLightOn = false;
 })
 
 .controller('MainCtrl', function ($scope, $state) {
