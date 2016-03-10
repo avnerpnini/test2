@@ -37,22 +37,25 @@ angular.module('ionicApp', ['ionic'])
     };
 
     $scope.ff = function () {
-            window.plugins.flashlight.switchOn();
-            $scope.flashLightOn = true;
+        window.plugins.flashlight.switchOn();
+        $scope.flashLightOn = true;
     };
 
     $scope.flashLight = function () {
         if ($scope.flashLightOn) {
             window.plugins.flashlight.switchOff();
             $scope.flashLightOn = false;
+            $scope.flashLightStatus = "Off";
         }
-        
+
         else {
             window.plugins.flashlight.switchOn();
             $scope.flashLightOn = true;
+            $scope.flashLightStatus = "On";
         }
     };
 
+    $scope.flashLightStatus = "Off";
     $scope.flashLightOn = false;
 })
 
