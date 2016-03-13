@@ -26,5 +26,5 @@
 
         <plugin name="nl.x-services.plugins.flashlight" spec="2.0.1" source="pgb" />
         <plugin name="cordova-plugin-device-orientation" spec="1.0.1" source="pgb" />
-        <plugin name="org.apache.cordova.device-orientation" spec="0.3.11" source="pgb" />
+
     </widget>

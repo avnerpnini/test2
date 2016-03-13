@@ -39,30 +39,15 @@ angular.module('ionicApp', ['ionic'])
     $scope.azimuth = 0;
     $scope.watchID = null;
     $scope.compass = function () {
+        $scope.azimuth = 60; 
         if (navigator.compass) {
-            function onSuccess(heading) {
-                $scope.azimuth = heading.magneticHeading;
-                alert("start "+$scope.watchID);
-            };
-
-            function onError(compassError) {
-                alert('Compass error: ' + compassError.code);
-            };
-
-            var options = {
-                frequency: 1000
-            }; // Update every 1 seconds
-
             $scope.watchID = navigator.compass.watchHeading(onSuccess, onError, options);
-
         }
-
-
 
         $scope.data = {};
         // An elaborate, custom popup
         var myPopup = $ionicPopup.show({
-            template: '<img src="http://www.t-hafalot.co.il/wp-content/uploads/2014/08/compass.jpg" style="width:100%;-ms-transform: rotate({{azimuth}}deg);-webkit-transform: rotate({{azimuth}}deg);transform: rotate({{azimuth}}deg);"><div style="text-align:center">{{azimuth}}°</div>',
+            template: '<img src="img/Compass.png" style="width:100%;-ms-transform: rotate({{azimuth}}deg);-webkit-transform: rotate({{azimuth}}deg);transform: rotate({{azimuth}}deg);"><div style="text-align:center">{{azimuth}}°</div><input ng-model="azimuth"/>',
             title: 'מצפן',
             scope: $scope,
             buttons: [
@@ -79,6 +64,19 @@ angular.module('ionicApp', ['ionic'])
             alert(1);
         });
     };
+
+    function onSuccess(heading) {
+                $scope.azimuth = heading.magneticHeading;
+                alert("start "+$scope.watchID);
+            };
+
+    function onError(compassError) {
+        alert('Compass error: ' + compassError.code);
+    };
+
+    var options = {
+        frequency: 1000
+    }; // Update every 1 seconds
 
     $scope.flashLight = function () {
         if ($scope.flashLightOn) {
