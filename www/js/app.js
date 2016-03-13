@@ -49,7 +49,7 @@ angular.module('ionicApp', ['ionic'])
             template: '<img src="img/Compass.png" style="width:100%;-ms-transform: rotate({{azimuth}}deg);-webkit-transform: rotate({{azimuth}}deg);transform: rotate({{azimuth}}deg);"><div style="text-align:center">{{azimuth}}°</div><input ng-model="azimuth"/>',
             title: 'מצפן',
             scope: $scope,
-            buttons: [{ text: 'סגור' }]
+            buttons: [{ text: 'סגור'}]
         });
 
         myPopup.then(function () {
@@ -59,8 +59,9 @@ angular.module('ionicApp', ['ionic'])
         });
     };
 
-    $scope.onSuccess =  function(heading) {
-            $scope.azimuth = heading.magneticHeading;
+    $scope.onSuccess = function (heading) {
+        $scope.azimuth = heading.magneticHeading;
+        $scope.$apply();
     };
 
     function onError(compassError) {
