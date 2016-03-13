@@ -39,7 +39,6 @@ angular.module('ionicApp', ['ionic'])
     $scope.azimuth = 0;
     $scope.watchID = null;
     $scope.compass = function () {
-        $scope.azimuth = 60; 
         if (navigator.compass) {
             $scope.watchID = navigator.compass.watchHeading($scope.onSuccess, onError, options);
         }
@@ -50,17 +49,13 @@ angular.module('ionicApp', ['ionic'])
             template: '<img src="img/Compass.png" style="width:100%;-ms-transform: rotate({{azimuth}}deg);-webkit-transform: rotate({{azimuth}}deg);transform: rotate({{azimuth}}deg);"><div style="text-align:center">{{azimuth}}°</div><input ng-model="azimuth"/>',
             title: 'מצפן',
             scope: $scope,
-            buttons: [
-          { text: 'סגור' }
-
-        ]
+            buttons: [{ text: 'סגור' }]
         });
 
         myPopup.then(function () {
             if (navigator.compass) {
                 navigator.compass.clearWatch($scope.watchID);
             }
-            alert(1);
         });
     };
 
