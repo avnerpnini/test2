@@ -18,7 +18,7 @@ angular.module('ionicApp', ['ionic'])
 
 })
 
-.controller('IntroCtrl', function ($scope, $state, $ionicSlideBoxDelegate) {
+.controller('IntroCtrl', function ($scope, $state, $ionicSlideBoxDelegate, $ionicPopup) {
 
     // Called to navigate to the main app
     $scope.startApp = function () {
@@ -36,9 +36,46 @@ angular.module('ionicApp', ['ionic'])
         $scope.slideIndex = index;
     };
 
-    $scope.ff = function () {
-        window.plugins.flashlight.switchOn();
-        $scope.flashLightOn = true;
+    $scope.azimuth = 0;
+    $scope.watchID = null;
+    $scope.compass = function () {
+        if (navigator.compass) {
+            function onSuccess(heading) {
+                $scope.azimuth = heading.magneticHeading;
+            };
+
+            function onError(compassError) {
+                alert('Compass error: ' + compassError.code);
+            };
+
+            var options = {
+                frequency: 1000
+            }; // Update every 1 seconds
+
+            $scope.watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+
+        }
+
+
+
+        $scope.data = {};
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<img src="http://www.t-hafalot.co.il/wp-content/uploads/2014/08/compass.jpg" style="width:100%;-ms-transform: rotate({{azimuth}}deg);-webkit-transform: rotate({{azimuth}}deg);transform: rotate({{azimuth}}deg);"><div style="text-align:center">{{azimuth}}°</div>',
+            title: 'מצפן',
+            scope: $scope,
+            buttons: [
+          { text: 'סגור' }
+
+        ]
+        });
+
+        myPopup.then(function () {
+            if (navigator.compass) {
+                navigator.compass.clearWatch($scope.watchID);
+            }
+            alert(1);
+        });
     };
 
     $scope.flashLight = function () {
