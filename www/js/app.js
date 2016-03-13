@@ -41,7 +41,7 @@ angular.module('ionicApp', ['ionic'])
     $scope.compass = function () {
         $scope.azimuth = 60; 
         if (navigator.compass) {
-            $scope.watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+            $scope.watchID = navigator.compass.watchHeading($scope.onSuccess, onError, options);
         }
 
         $scope.data = {};
@@ -64,9 +64,9 @@ angular.module('ionicApp', ['ionic'])
         });
     };
 
-    function onSuccess(heading) {
-                $scope.azimuth = heading.magneticHeading;
-            };
+    $scope.onSuccess =  function(heading) {
+            $scope.azimuth = heading.magneticHeading;
+    };
 
     function onError(compassError) {
         alert('Compass error: ' + compassError.code);
