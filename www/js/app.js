@@ -59,7 +59,6 @@ angular.module('ionicApp', ['ionic'])
         myPopup.then(function () {
             if (navigator.compass) {
                 navigator.compass.clearWatch($scope.watchID);
-                alert("stop "+$scope.watchID);
             }
             alert(1);
         });
@@ -67,7 +66,6 @@ angular.module('ionicApp', ['ionic'])
 
     function onSuccess(heading) {
                 $scope.azimuth = heading.magneticHeading;
-                alert("start "+$scope.watchID);
             };
 
     function onError(compassError) {
