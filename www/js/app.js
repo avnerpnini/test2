@@ -46,7 +46,7 @@ angular.module('ionicApp', ['ionic'])
         $scope.data = {};
         // An elaborate, custom popup
         var myPopup = $ionicPopup.show({
-            template: '<img src="img/Compass.png" style="width:100%;-ms-transform: rotate({{azimuth}}deg);-webkit-transform: rotate({{azimuth}}deg);transform: rotate({{azimuth}}deg);"><div style="text-align:center">{{azimuth}}°</div><input ng-model="azimuth"/>',
+            template: '<img src="img/Compass.png" style="width:100%;-ms-transform: rotate({{360-azimuth}}deg);-webkit-transform: rotate({{360-azimuth}}deg);transform: rotate({{360-azimuth}}deg);"><div style="text-align:center">{{azimuth}}°</div><input ng-model="azimuth"/>',
             title: 'מצפן',
             scope: $scope,
             buttons: [{ text: 'סגור'}]
@@ -97,5 +97,4 @@ angular.module('ionicApp', ['ionic'])
         $state.go('intro');
     }
 });
-
 
